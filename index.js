@@ -13,6 +13,7 @@ mongoose
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
   })
   .then((self) => {
     console.log(`Connected to the database: "${self.connection.name}"`);
@@ -139,7 +140,11 @@ mongoose
   })
   .then((data) => {
     data.forEach((recipe) => console.log(recipe.title));
-  })
-  .catch((error) => {
-    console.error("Error connecting to the database", error);
+    Recipe.findOneAndUpdate(
+      { title: "Rigatoni alla Genovese" },
+      { duration: 100 },
+      { new: true }
+    ).catch((error) => {
+      console.error("Error connecting to the database", error);
+    });
   });
