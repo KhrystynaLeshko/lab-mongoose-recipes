@@ -144,7 +144,16 @@ mongoose
       { title: "Rigatoni alla Genovese" },
       { duration: 100 },
       { new: true }
-    ).catch((error) => {
-      console.error("Error connecting to the database", error);
-    });
+    )
+      .then((recipe) => {
+        console.log("It finally updated!Success!");
+
+        //Iteratin 5
+        return Recipe.deleteOne({ title: "Carrot Cake" }).then((deletedOne) => {
+          console.log("Carrot Cake is deleted!FOREVER");
+        });
+      })
+      .catch((error) => {
+        console.error("Error connecting to the database", error);
+      });
   });
