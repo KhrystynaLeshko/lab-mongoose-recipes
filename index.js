@@ -151,6 +151,9 @@ mongoose
         //Iteratin 5
         return Recipe.deleteOne({ title: "Carrot Cake" }).then((deletedOne) => {
           console.log("Carrot Cake is deleted!FOREVER");
+
+          // Iteration 6
+          return mongoose.disconnect();
         });
       })
       .catch((error) => {
